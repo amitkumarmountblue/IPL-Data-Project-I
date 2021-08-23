@@ -64,9 +64,7 @@ function top10EconomicalBowlersIn2015(matches, deliveries){
     let result = [];
     let bowlersRun = {};
     let bowlerDeliveries={};
-    let economicalBowlers=[];
     let id = 0;
-    let count = 0;
 
     for(let match of matches){
         const season=match.season;
