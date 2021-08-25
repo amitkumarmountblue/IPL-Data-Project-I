@@ -8,7 +8,7 @@
   },
   "author": "",
   "license": "ISC",
-  "dependencies": {
+  "dependencies":{
     "csv-parser": "^3.0.0"
   }
 }
