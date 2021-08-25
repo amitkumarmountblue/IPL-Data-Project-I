@@ -1,8 +1,7 @@
-function numberOfMatchesPerYear(matches) {
+function matchesPerYearForAllTheYear(matchData) {
     let result={};
-    for(let match of matches){
+    for(let match of matchData){
         const season=match.season;
-
         if(season in result){
             result[season]+=1;
         }else{
@@ -13,12 +12,11 @@ function numberOfMatchesPerYear(matches) {
     return result;
 }
 
-function numberOfMatchesWonPerTeamPerYear(matches) {
+function matchesWonPerTeamPerYear(matchData) {
     let result = {};
-    for(let match of matches){
+    for(let match of matchData){
         const season=match.season;
         const winner=match.winner;
-        
         if(season in result){
             if(winner in result[season]){
                 result[season][winner]+=1;
@@ -34,20 +32,19 @@ function numberOfMatchesWonPerTeamPerYear(matches) {
     return result;
 }
 
-function extraRunConcededPerTeamIn2016(matches, deliveries){
+function extraRunPerTeamIn2016(matchData, deliveriesData){
     let result = {};
-    let id = 0;
-    for(let match of matches){
+    let index = 0;
+    for(let match of matchData){
         const season=match.season;
         if(season==2016){  
-            id=match.id;
-            
+            index=match.id;  
         }
-        for(let delivery of deliveries){
+        for(let delivery of deliveriesData){
             const match_id=delivery.match_id;
             const bowling_team=delivery.bowling_team;
             const extra_runs=delivery.extra_runs;
-            if(match_id==id){
+            if(match_id==index){
                 if(bowling_team in  result){
                     result[bowling_team]+=Number(extra_runs);
                 }else{
@@ -57,22 +54,22 @@ function extraRunConcededPerTeamIn2016(matches, deliveries){
         }
     }
 
-        return result;
+    return result;
     }
 
-function top10EconomicalBowlersIn2015(matches, deliveries){
+function top10EconomicalBowlersIn2015(matchData, deliveriesData){
     let result = [];
     let bowlersRun = {};
     let bowlerDeliveries={};
-    let id = 0;
+    let index = 0;
 
-    for(let match of matches){
+    for(let match of matchData){
         const season=match.season;
         if(season==2015){
-          id=match.id;
+          index=match.id;
         }
-        for(let delivery of deliveries){
-            if(delivery.match_id==id){
+        for(let delivery of deliveriesData){
+            if(delivery.match_id==index){
                 if(delivery.bowler in bowlersRun){
                     bowlersRun[delivery.bowler]+= Number(delivery.total_runs);
                 }else{
@@ -95,7 +92,7 @@ function top10EconomicalBowlersIn2015(matches, deliveries){
     return result;
 }
 
-module.exports.numberOfMatchesPerYear = numberOfMatchesPerYear;
-module.exports.numberOfMatchesWonPerTeamPerYear = numberOfMatchesWonPerTeamPerYear;
-module.exports.extraRunConcededPerTeamIn2016 = extraRunConcededPerTeamIn2016;
+module.exports.matchesPerYearForAllTheYear = matchesPerYearForAllTheYear;
+module.exports.matchesWonPerTeamPerYear = matchesWonPerTeamPerYear;
+module.exports.extraRunPerTeamIn2016 = extraRunPerTeamIn2016;
 module.exports.top10EconomicalBowlersIn2015 = top10EconomicalBowlersIn2015;
